@@ -1,11 +1,15 @@
-NAME                                      READY   STATUS    RESTARTS   AGE
-gateway-tyk-tyk-gateway-79dfbdbf5-52vjt   1/1     Running   0          14m
-gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv   1/1     Running   0          14m
-redis-0                                   1/1     Running   0          4m11s
-redis-1                                   1/1     Running   0          2m26s
-redis-2                                   1/1     Running   0          57m
-sentinel-0                                1/1     Running   0          57m
-sentinel-1                                1/1     Running   0          57m
-sentinel-2                                1/1     Running   0          57m
-upstream-78b48bbb66-4gztw                 1/1     Running   0          57m
-upstream-78b48bbb66-jsft9                 1/1     Running   0          57m
+NAME                                       READY   STATUS    RESTARTS      AGE
+gateway-tyk-tyk-gateway-765f75d6cc-2mmsx   1/1     Running   0             34m
+gateway-tyk-tyk-gateway-765f75d6cc-pckst   1/1     Running   0             34m
+mongo-0                                    1/1     Running   1 (12m ago)   12m
+mongo-1                                    1/1     Running   0             35m
+mongo-2                                    1/1     Running   0             35m
+pump-tyk-tyk-pump-67f99485d7-h4g7v         1/1     Running   0             34m
+redis-0                                    1/1     Running   0             68m
+redis-1                                    1/1     Running   0             67m
+redis-2                                    1/1     Running   0             122m
+sentinel-0                                 1/1     Running   0             122m
+sentinel-1                                 1/1     Running   0             122m
+sentinel-2                                 1/1     Running   0             122m
+upstream-78b48bbb66-4gztw                  1/1     Running   0             122m
+upstream-78b48bbb66-jsft9                  1/1     Running   0             122m
