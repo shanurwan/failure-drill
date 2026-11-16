@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>faildrill: a hands-on course in failure drills for Tyk on Kubernetes</title>
+<meta name="description" content="Break a Tyk API gateway on purpose and measure what callers felt. Five short lessons: you type the commands, and the terminal replays the recorded output of real runs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{"imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <a class="wordmark" href="#top" id="top">faildrill</a>
+  <nav aria-label="Sections">
+    <a href="#course">Course</a>
+    <a href="#results">Results</a>
+    <a href="#method">How it is measured</a>
+    <a href="#own">Your own cluster</a>
+    <a href="https://github.com/shanurwan/failure-drill">GitHub</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <p class="eyebrow">A free course, about twenty minutes</p>
+  <h1>Break your API gateway on purpose, and measure what your callers felt.</h1>
+  <p class="lede">Five short lessons on failure drills for Tyk on Kubernetes. You type each command yourself. The terminal answers with the output of a real run, recorded on a lab cluster, and the picture beside it plays back what the system did second by second.</p>
+  <p><a class="button" href="#course">Start with lesson one</a></p>
+  <p class="fineprint" id="provenance">Loading the recorded runs.</p>
+</section>
+
+<main id="course" class="classroom">
+  <ol class="lessons" id="lessons" aria-label="Lessons"></ol>
+
+  <div class="desk">
+    <article class="lesson" id="lesson" aria-live="polite"></article>
+
+    <div class="bench">
+      <figure class="stage">
+        <canvas id="scene" aria-label="3D view of the lab: callers, two gateways, three Redis pods with their Sentinels, and the upstream"></canvas>
+        <div id="labels" aria-hidden="true"></div>
+        <div class="stage-top">
+          <span class="chip" id="clock">ready</span>
+          <span class="chip quiet" id="runpick"></span>
+        </div>
+        <figcaption>
+          <canvas id="strip" height="54" aria-label="Requests per second through the drill: answered and failed"></canvas>
+          <div class="strip-key">
+            <span><i class="sw ok"></i>answered</span>
+            <span><i class="sw bad"></i>failed</span>
+            <span><i class="ln slow"></i>slowest 1% of the keyed API</span>
+            <span class="speeds" id="speeds" role="group" aria-label="Replay speed"></span>
+          </div>
+        </figcaption>
+      </figure>
+
+      <div class="terminal" id="terminal">
+        <div class="term-bar">
+          <span class="term-title">lab terminal, replay</span>
+          <button type="button" id="hint" class="term-btn">Type it for me</button>
+        </div>
+        <div class="term-body" id="term-body" tabindex="-1">
+          <div id="term-out"></div>
+          <label class="term-line">
+            <span class="prompt">lab&nbsp;$</span>
+            <input id="term-in" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section id="results" class="prose">
+  <h2>What the recorded runs showed</h2>
+  <p class="center">Every number below is computed in your browser from the same records the terminal replays. Each drill was run several times, about 3,750 requests to each API per run. A range is the spread across runs.</p>
+  <div class="tablewrap"><table id="results-table"></table></div>
+  <div id="takeaways"></div>
+</section>
+
+<section id="method" class="prose">
+  <h2>How it is measured</h2>
+  <div class="cols">
+    <div>
+      <h3>Traffic that does not wait</h3>
+      <p>The tool sends a fixed number of requests every second to each address you give it, whether or not earlier ones have come back. A gateway that stalls shows up as slow answers and timeouts, the way it does for real callers. A test that waits politely for each answer would hide the stall.</p>
+    </div>
+    <div>
+      <h3>One clock, started at the fault</h3>
+      <p>Fifteen seconds of traffic run first, so there is a baseline to compare with. Every later time is counted from the moment the fault goes in. A failure before that moment is reported separately, because it means the baseline was not clean.</p>
+    </div>
+    <div>
+      <h3>Impact and longest gap</h3>
+      <p>Impact is the time from the first failed request to the last. Longest gap is the longest stretch in which every request failed. A drill can have a long impact and a short gap: a few failures scattered over several seconds.</p>
+    </div>
+    <div>
+      <h3>What this lab cannot tell you</h3>
+      <p>The lab is a single-node k3s cluster with open-source Tyk, so nothing here speaks for several nodes, several regions or a multi-data-centre setup. The numbers describe this lab on this day. Run the drills on your own install before you believe any of them about yours.</p>
+    </div>
+  </div>
+</section>
+
+<section id="own" class="prose">
+  <h2>Run it on your own cluster</h2>
+  <p class="center">The tool is one Go binary. It needs a kubeconfig that may list and delete pods and patch the gateway Deployment in the namespace you point it at. Start in a cluster you are allowed to break.</p>
+  <pre class="code"><code>go install github.com/shanurwan/failure-drill/cmd/faildrill@latest
+
+# read the install, change nothing
+faildrill preflight -n tyk
+
+# break one thing while traffic flows
+faildrill run redis-primary --fault hang -n tyk \
+  --url open=https://gw.example.com/status \
+  --url keyed=https://gw.example.com/orders \
+  --header 'keyed=Authorization: YOUR-KEY'</code></pre>
+  <p class="center">No cluster to hand? The repository has a lab that brings up Redis with Sentinel and two gateways from Tyk's own chart: <code>lab/up.sh</code>.</p>
+</section>
+
+<footer class="foot">
+  <p>faildrill is an independent open-source project and is not affiliated with Tyk Technologies. Tyk is a trademark of its owner.</p>
+  <p><a href="https://github.com/shanurwan/failure-drill">Source and records on GitHub</a></p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
