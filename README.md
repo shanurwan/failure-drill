@@ -45,7 +45,7 @@ A second drill kills the primary's pod and lets Kubernetes restart it. It was re
 A third rehearses losing the analytics database. It takes a backup, lets traffic continue, drops the database, restores it, and checks the restore:
 
 ```
-     +1.3s  backup taken: 3426124 bytes in 1.3s, kept at drills/mongo-restore-20261116-132833.archive.gz
+     +1.3s  backup taken: 3426124 bytes in 1.3s, kept at results/2026-11-16/mongo-restore-20261116-132833.archive.gz
     +27.8s  database tyk_analytics dropped with 89224 records in tyk_analytics_pump
     +57.4s  restore finished: 86628 records back, 31.6s after the drop
     +57.4s  2596 records written in the 25.8s between the backup and the disaster are gone
