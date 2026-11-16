@@ -39,6 +39,9 @@ Drills:
   redis-primary     take the Redis primary away        --fault crash | hang
   gateway-pod       take one gateway pod away          --fault crash | evict
   rolling-restart   restart every gateway pod, as an upgrade does
+  mongo-primary     take the MongoDB primary away      --fault crash | stepdown
+  mongo-restore     back up the analytics database, drop it, restore it
+                    (destructive: needs --mongo-db)
 
 Run "faildrill preflight -h" or "faildrill run -h" for the flags.
 `
@@ -142,7 +145,7 @@ func runPreflight(ctx context.Context, args []string) error {
 func runDrill(ctx context.Context, args []string) error {
 	fs := flag.NewFlagSet("run", flag.ContinueOnError)
 	fs.Usage = func() {
-		fmt.Fprintf(fs.Output(), "Usage: faildrill run <redis-primary|gateway-pod|rolling-restart> [flags]\n\n")
+		fmt.Fprintf(fs.Output(), "Usage: faildrill run <redis-primary|gateway-pod|rolling-restart|mongo-primary|mongo-restore> [flags]\n\n")
 		fs.PrintDefaults()
 	}
 	var c common
@@ -154,6 +157,12 @@ func runDrill(ctx context.Context, args []string) error {
 	hold := fs.Duration("hold", 30*time.Second, "redis-primary --fault hang: how long the primary stops answering")
 	redisContainer := fs.String("redis-container", "", "container to run redis-cli in (default: the pod's first)")
 	redisCLI := fs.String("redis-cli-args", "", `extra redis-cli arguments, for example "-a $PASSWORD"`)
+	mongoSelector := fs.String("mongo-selector", "app.kubernetes.io/name=mongo", "label selector of the MongoDB pods")
+	mongoContainer := fs.String("mongo-container", "", "container to run mongosh in (default: the pod's first)")
+	mongoDB := fs.String("mongo-db", "", "analytics database (mongo-primary: default tyk_analytics; mongo-restore: required, it is dropped)")
+	mongoCollection := fs.String("mongo-collection", "tyk_analytics_pump", "collection the pump writes one record per request to")
+	mongoArgs := fs.String("mongo-args", "", `extra mongosh, mongodump and mongorestore arguments, for example "-u admin -p $PASSWORD --authenticationDatabase admin"`)
+	gap := fs.Duration("gap", 20*time.Second, "mongo-restore: traffic between the backup and the disaster")
 	rps := fs.Int("rps", 50, "requests per second, per target")
 	timeout := fs.Duration("timeout", 2*time.Second, "how long a caller waits for one request")
 	baseline := fs.Duration("baseline", 15*time.Second, "traffic before the fault")
@@ -179,6 +188,7 @@ func runDrill(ctx context.Context, args []string) error {
 	}
 
 	var f drill.Fault
+	destroys := ""
 	mode := *fault
 	if mode == "" {
 		mode = "crash"
@@ -190,8 +200,27 @@ func runDrill(ctx context.Context, args []string) error {
 		f = &drill.GatewayPod{Deployment: c.gateway, Mode: mode}
 	case "rolling-restart":
 		f = &drill.RollingRestart{Deployment: c.gateway}
+	case "mongo-primary", "mongo-restore":
+		mongo := drill.Mongo{Selector: *mongoSelector, Container: *mongoContainer, DB: *mongoDB, Collection: *mongoCollection, ShellArgs: strings.Fields(*mongoArgs)}
+		if name == "mongo-primary" {
+			if mongo.DB == "" {
+				mongo.DB = "tyk_analytics"
+			}
+			f = &drill.MongoPrimary{Mongo: mongo, Mode: mode}
+			break
+		}
+		// A drill that drops a database never guesses which one.
+		if mongo.DB == "" {
+			return errors.New("mongo-restore drops a database and restores it from a backup it has just taken: name the database with --mongo-db")
+		}
+		destroys = fmt.Sprintf("DROP database %q", mongo.DB)
+		if err := os.MkdirAll(*out, 0o755); err != nil {
+			return err
+		}
+		archive := filepath.Join(*out, "mongo-restore-"+time.Now().UTC().Format("20060102-150405")+".archive.gz")
+		f = &drill.MongoRestore{Mongo: mongo, Gap: *gap, ArchivePath: archive}
 	default:
-		return fmt.Errorf("unknown drill %q: use redis-primary, gateway-pod or rolling-restart", name)
+		return fmt.Errorf("unknown drill %q: use redis-primary, gateway-pod, rolling-restart, mongo-primary or mongo-restore", name)
 	}
 
 	k, err := kube.New(c.context, c.namespace)
@@ -199,6 +228,9 @@ func runDrill(ctx context.Context, args []string) error {
 		return err
 	}
 	if !*yes {
+		if destroys != "" {
+			fmt.Println("This will", destroys, "in namespace", k.Namespace+".")
+		}
 		fmt.Printf("This will break a running system in namespace %q. Type the namespace to continue: ", k.Namespace)
 		var answer string
 		fmt.Scanln(&answer)

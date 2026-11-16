@@ -77,6 +77,25 @@ type Fault interface {
 	Watch(ctx context.Context, k *kube.Client, note func(kind, text string), fact func(key, value string))
 }
 
+// A Sequenced fault has steps that follow the first one, such as "wait, destroy,
+// restore". They run after Inject while traffic continues.
+type Sequenced interface {
+	After(ctx context.Context, k *kube.Client, note func(kind, text string), fact func(key, value string)) error
+}
+
+// An Accountant checks, once traffic has stopped, what the system kept of it.
+type Accountant interface {
+	Account(ctx context.Context, k *kube.Client, traffic Traffic, note func(kind, text string), fact func(key, value string))
+}
+
+// Traffic is what the drill sent, for an Accountant to compare against.
+type Traffic struct {
+	From, To time.Time
+	Sent     int
+	// Answered counts requests that got any HTTP response.
+	Answered int
+}
+
 // Run performs the drill: baseline traffic, the fault, then observation.
 func Run(ctx context.Context, k *kube.Client, fault Fault, opts Options) (*Result, error) {
 	plan, err := fault.Prepare(ctx, k)
@@ -168,15 +187,37 @@ func Run(ctx context.Context, k *kube.Client, fault Fault, opts Options) (*Resul
 	}
 	note("fault", "fault injected")
 
-	if !sleep(ctx, opts.Observe) {
+	if seq, ok := fault.(Sequenced); ok {
+		if err := seq.After(ctx, k, note, fact); err != nil {
+			return nil, err
+		}
+	}
+	// The observation window counts from the fault; a long sequence still
+	// gets ten seconds of traffic after its last step.
+	if !sleep(ctx, max(opts.Observe-time.Since(injected), 10*time.Second)) {
 		return nil, ctx.Err()
 	}
 	note("phase", "observation window over")
 
 	stopLoad()
 	<-loadDone
+	loadEnd := time.Now()
 	stopWatch()
 	<-watchDone
+	result.ObserveS = math.Round(loadEnd.Sub(injected).Seconds())
+
+	if acc, ok := fault.(Accountant); ok {
+		traffic := Traffic{From: start, To: loadEnd}
+		for _, list := range samples {
+			traffic.Sent += len(list)
+			for _, sample := range list {
+				if sample.Status != 0 {
+					traffic.Answered++
+				}
+			}
+		}
+		acc.Account(ctx, k, traffic, note, fact)
+	}
 
 	for _, target := range opts.Targets {
 		result.Targets = append(result.Targets, TargetResult{

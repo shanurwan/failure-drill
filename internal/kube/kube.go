@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"io"
 	"strings"
 	"time"
 
@@ -84,14 +85,29 @@ func (c *Client) DeletePod(ctx context.Context, name string, gracePeriod *int64)
 // Exec runs a command in a pod and returns its standard output. It gives up
 // after timeout, which is how the drills notice a process that has hung.
 func (c *Client) Exec(ctx context.Context, pod, container string, timeout time.Duration, command ...string) (string, error) {
+	var stdout bytes.Buffer
+	if _, err := c.ExecIO(ctx, pod, container, timeout, nil, &stdout, command...); err != nil {
+		return "", err
+	}
+	return stdout.String(), nil
+}
+
+// ExecIO runs a command in a pod with its input and output attached, for
+// commands that move data: a database dump out, a restore in. It returns what
+// the command wrote to standard error, which is where those tools report.
+func (c *Client) ExecIO(ctx context.Context, pod, container string, timeout time.Duration, stdin io.Reader, stdout io.Writer, command ...string) (string, error) {
 	ctx, cancel := context.WithTimeout(ctx, timeout)
 	defer cancel()
+	if stdout == nil {
+		stdout = io.Discard
+	}
 
 	req := c.Set.CoreV1().RESTClient().Post().
 		Resource("pods").Namespace(c.Namespace).Name(pod).SubResource("exec").
 		VersionedParams(&corev1.PodExecOptions{
 			Container: container,
 			Command:   command,
+			Stdin:     stdin != nil,
 			Stdout:    true,
 			Stderr:    true,
 		}, scheme.ParameterCodec)
@@ -100,9 +116,10 @@ func (c *Client) Exec(ctx context.Context, pod, container string, timeout time.D
 	if err != nil {
 		return "", fmt.Errorf("exec in %s: %w", pod, err)
 	}
-	var stdout, stderr bytes.Buffer
-	if err := executor.StreamWithContext(ctx, remotecommand.StreamOptions{Stdout: &stdout, Stderr: &stderr}); err != nil {
-		return "", fmt.Errorf("exec %q in %s: %w %s", strings.Join(command, " "), pod, err, strings.TrimSpace(stderr.String()))
+	var stderr bytes.Buffer
+	err = executor.StreamWithContext(ctx, remotecommand.StreamOptions{Stdin: stdin, Stdout: stdout, Stderr: &stderr})
+	if err != nil {
+		return stderr.String(), fmt.Errorf("exec %q in %s: %w %s", strings.Join(command, " "), pod, err, strings.TrimSpace(stderr.String()))
 	}
-	return stdout.String(), nil
+	return stderr.String(), nil
 }

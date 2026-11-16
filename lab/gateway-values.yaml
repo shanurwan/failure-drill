@@ -1,6 +1,11 @@
 # Values for Tyk's own open-source chart (tyk-helm/tyk-oss): two gateways that
-# find Redis through Sentinel and load the lab's API definitions from a ConfigMap.
+# find Redis through Sentinel and load the lab's API definitions from a
+# ConfigMap, and a pump that writes their analytics records to MongoDB.
 global:
+  components:
+    pump: true
+  mongo:
+    mongoURL: mongodb://mongo-0.mongo:27017,mongo-1.mongo:27017,mongo-2.mongo:27017/tyk_analytics?replicaSet=rs0
   secrets:
     APISecret: lab-admin-secret
   redis:
@@ -28,3 +33,11 @@ tyk-gateway:
     resources:
       requests: {cpu: 100m, memory: 128Mi}
       limits: {memory: 512Mi}
+
+tyk-pump:
+  pump:
+    backend:
+      - mongo
+    resources:
+      requests: {cpu: 50m, memory: 64Mi}
+      limits: {memory: 256Mi}
