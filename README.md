@@ -4,6 +4,8 @@ Failure drills for [Tyk](https://github.com/TykTechnologies/tyk) on Kubernetes.
 
 `faildrill` breaks one thing in a running Tyk install while traffic flows through the gateway, and reports what the callers saw: how many requests failed, as what, for how long, and how slow the rest became.
 
+There is a short hands-on course built from recorded runs: **https://shanurwan.github.io/failure-drill/**. You type the commands and the page replays what the real command printed, next to a 3D view of what the system did.
+
 ## Why
 
 A checklist can tell you that your gateways have no disruption budget or that Redis has no replica. It cannot tell you what a caller gets when the Redis primary freezes for thirty seconds: an error, a slow answer, or nothing they would notice. The only way to know is to do it and count.
