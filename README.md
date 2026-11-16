@@ -42,6 +42,18 @@ Run the same drill again and the count is different: across three recorded runs,
 
 A second drill kills the primary's pod and lets Kubernetes restart it. It was recorded ten times. Six runs lost nothing and one timed out six requests. In three, callers holding a valid key were answered with **HTTP 403**, up to 85 requests in one run. The gateway's log for those seconds reads `storage: Redis is either down or was not configured` followed by `Attempted access with non-existent key.`: a lookup that failed was treated as a key that does not exist. The records and two of those logs are in [`results/2026-11-16/`](results/2026-11-16/).
 
+A third rehearses losing the analytics database. It takes a backup, lets traffic continue, drops the database, restores it, and checks the restore:
+
+```
+     +1.3s  backup taken: 3426124 bytes in 1.3s, kept at drills/mongo-restore-20261116-132833.archive.gz
+    +27.8s  database tyk_analytics dropped with 89224 records in tyk_analytics_pump
+    +57.4s  restore finished: 86628 records back, 31.6s after the drop
+    +57.4s  2596 records written in the 25.8s between the backup and the disaster are gone
+    +59.3s  verified: all 86282 records older than the backup are back
+```
+
+No caller saw an error in any of it. The gateway went on answering while the record of what it answered was gone, which is why the two numbers a backup policy promises, time to restore and data lost, are worth measuring before the day they matter.
+
 ## Install
 
 ```sh
@@ -76,6 +88,9 @@ It asks you to type the namespace before it breaks anything (`--yes` skips the q
 | `gateway-pod` | `crash` | Kills one gateway pod without warning. |
 | `gateway-pod` | `evict` | Deletes one gateway pod with its grace period, as a node drain does. |
 | `rolling-restart` | | Restarts every gateway pod, as `kubectl rollout restart` and every chart upgrade do. |
+| `mongo-primary` | `crash` | Kills the MongoDB primary's pod, then counts whether every request the gateway answered is on record. |
+| `mongo-primary` | `stepdown` | Asks the primary to step down, as a planned replica set upgrade does. |
+| `mongo-restore` | | Backs up the analytics database, waits `--gap` (20s), **drops it**, restores it, and verifies the restore. Needs `--mongo-db`. |
 
 Flags worth knowing:
 
@@ -87,12 +102,18 @@ Flags worth knowing:
 | `--observe` | 60s | Traffic after the fault |
 | `--redis-selector` | `app.kubernetes.io/name=redis` | Label selector of the Redis pods |
 | `--redis-cli-args` | | Extra `redis-cli` arguments, such as `-a $PASSWORD` |
+| `--mongo-selector` | `app.kubernetes.io/name=mongo` | Label selector of the MongoDB pods |
+| `--mongo-db` | `tyk_analytics` | Analytics database. `mongo-restore` has no default: it will not guess what to drop |
+| `--mongo-collection` | `tyk_analytics_pump` | Collection the pump writes one record per request to |
+| `--mongo-args` | | Extra `mongosh`, `mongodump` and `mongorestore` arguments, such as credentials |
 | `--gateway` | found by image | Gateway Deployment name |
 | `--out` | `drills` | Where records and reports go |
 
 ## What it touches
 
-`faildrill` needs to list pods, Deployments and PodDisruptionBudgets in the namespace. Depending on the drill it also deletes one pod, runs `redis-cli` in the Redis pods, or patches the gateway Deployment's restart annotation. It creates nothing and leaves nothing behind. Every fault is one the cluster recovers from by itself: a deleted pod is replaced by its controller, and `CLIENT PAUSE` ends on its own.
+`faildrill` needs to list pods, Deployments and PodDisruptionBudgets in the namespace. Depending on the drill it also deletes one pod, runs `redis-cli` or `mongosh` in the database pods, or patches the gateway Deployment's restart annotation. It creates nothing and leaves nothing behind. With one exception, every fault is one the cluster recovers from by itself: a deleted pod is replaced by its controller, `CLIENT PAUSE` ends on its own, and a replica set elects a new primary.
+
+The exception is `mongo-restore`. It drops the database you name and puts it back from a backup it took moments earlier. Anything written between the backup and the drop is lost for good: measuring that loss is the point of the drill. The backup is written to `drills/` before anything is dropped, so a drill that is interrupted can be finished by hand with `mongorestore --archive --gzip`. Run it against analytics data you can afford to lose, never against a database you have no other copy of.
 
 Start in a cluster you are allowed to break.
 
@@ -105,7 +126,7 @@ Start in a cluster you are allowed to break.
 
 ## The lab
 
-`lab/` brings up something to practise on: three Redis pods with three Sentinels, a small upstream, and two gateways installed from Tyk's own open-source chart (`tyk-helm/tyk-oss`).
+`lab/` brings up something to practise on: three Redis pods with three Sentinels, a three-member MongoDB replica set, a small upstream, and two gateways and a pump installed from Tyk's own open-source chart (`tyk-helm/tyk-oss`).
 
 ```sh
 lab/up.sh       # needs kubectl and helm
@@ -114,7 +135,7 @@ lab/down.sh
 
 ## The records
 
-`results/2026-11-16/` holds 22 runs: the full JSON record of each drill, with every request, the Markdown report the tool wrote, and the gateway logs of two runs. `site/data/runs.json` is made from the records by `faildrill export`, and CI fails if the two disagree.
+`results/2026-11-16/` holds 31 runs: the full JSON record of each drill, with every request, the Markdown report the tool wrote, and the gateway logs of two runs. `site/data/runs.json` is made from the records by `faildrill export`, and CI fails if the two disagree.
 
 They were recorded on a single-node k3s cluster with Tyk Gateway v5.13.5. They describe that lab on that day. One node means a lost node cannot be imitated, and open-source Tyk means nothing here covers a multi-data-centre setup.
 

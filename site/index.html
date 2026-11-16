@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>faildrill: a hands-on course in failure drills for Tyk on Kubernetes</title>
-<meta name="description" content="Break a Tyk API gateway on purpose and measure what callers felt. Five short lessons: you type the commands, and the terminal replays the recorded output of real runs.">
+<meta name="description" content="Break a Tyk API gateway on purpose and measure what callers felt. Seven short lessons: you type the commands, and the terminal replays the recorded output of real runs.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
@@ -30,9 +30,9 @@
 </header>
 
 <section class="hero">
-  <p class="eyebrow">A free course, about twenty minutes</p>
+  <p class="eyebrow">A free course, about half an hour</p>
   <h1>Break your API gateway on purpose, and measure what your callers felt.</h1>
-  <p class="lede">Five short lessons on failure drills for Tyk on Kubernetes. You type each command yourself. The terminal answers with the output of a real run, recorded on a lab cluster, and the picture beside it plays back what the system did second by second.</p>
+  <p class="lede">Seven short lessons on failure drills for Tyk on Kubernetes. You type each command yourself. The terminal answers with the output of a real run, recorded on a lab cluster, and the picture beside it plays back what the system did second by second. Each lesson ends with a real incident of the same kind, and a link to the report written by the people it happened to.</p>
   <p><a class="button" href="#course">Start with lesson one</a></p>
   <p class="fineprint" id="provenance">Loading the recorded runs.</p>
 </section>
@@ -45,7 +45,7 @@
 
     <div class="bench">
       <figure class="stage">
-        <canvas id="scene" aria-label="3D view of the lab: callers, two gateways, three Redis pods with their Sentinels, and the upstream"></canvas>
+        <canvas id="scene" aria-label="3D view of the lab: callers, two gateways, three Redis pods with their Sentinels, the upstream, and the pump with three MongoDB members"></canvas>
         <div id="labels" aria-hidden="true"></div>
         <div class="stage-top">
           <span class="chip" id="clock">ready</span>

@@ -87,11 +87,29 @@ function stateAt(run, t) {
   while (initial.length < count) initial.push(`gateway-${"ab"[initial.length] || initial.length}`);
   const gateways = initial.map((name) => ({ name, status: "ready" }));
 
+  // MongoDB: three members, and the analytics database they hold.
+  const mongo = {};
+  for (const name of ["mongo-0", "mongo-1", "mongo-2"]) mongo[name] = { role: "secondary", down: false };
+  const mongoDrill = run.drill.startsWith("mongo-");
+  const planned = (run.output.match(/restore it on (\S+)/) || [])[1];
+  mongo[(mongoDrill && (run.facts.primary_before || planned)) || "mongo-0"].role = "primary";
+  const db = { state: "ok", backup: false, note: "" };
+
   let phase = t < 0 ? "baseline" : "after";
   for (const e of run.events) {
     if (e.t > t) break;
     let m;
-    if ((m = e.text.match(/^(\S+) stopped answering$/))) { redis[m[1]].frozen = true; }
+    if (e.kind === "mongo") {
+      if ((m = e.text.match(/^(\S+) stopped answering$/))) { mongo[m[1]].down = true; if (mongo[m[1]].role === "primary") mongo[m[1]].role = "secondary"; }
+      else if ((m = e.text.match(/^(\S+) elected primary$/))) { for (const x of Object.values(mongo)) x.role = "secondary"; mongo[m[1]].role = "primary"; mongo[m[1]].down = false; }
+      else if ((m = e.text.match(/^(\S+) (stepped down, now a secondary|is back as a secondary)$/))) { mongo[m[1]].role = "secondary"; mongo[m[1]].down = false; }
+      continue;
+    }
+    if (e.kind === "backup") { db.backup = true; continue; }
+    if (e.kind === "restore") { db.state = "restored"; db.note = e.text; continue; }
+    if (e.kind === "fault" && /^database \S+ dropped/.test(e.text)) { db.state = "dropped"; continue; }
+    if (e.kind === "analytics") continue;
+    if ((m = e.text.match(/^(redis\S*) stopped answering$/))) { redis[m[1]].frozen = true; }
     else if ((m = e.text.match(/^(\S+) promoted to primary$/))) {
       for (const r of Object.values(redis)) if (r.role === "primary") { r.role = "replica"; r.stale = true; }
       redis[m[1]].role = "primary"; redis[m[1]].stale = false;
@@ -106,7 +124,7 @@ function stateAt(run, t) {
   // A stale primary is one that has been replaced but has not been told yet:
   // only meaningful once it answers again.
   for (const r of Object.values(redis)) if (r.stale && r.frozen) r.stale = false;
-  return { redis, gateways, phase };
+  return { redis, gateways, phase, mongo, db, focus: mongoDrill ? "mongo" : "gateway" };
 }
 
 // ---------- lessons ------------------------------------------------------------------
@@ -139,12 +157,31 @@ function openLesson(i, { focus = true } = {}) {
     <h3>Type this in the terminal</h3>
     ${lesson.commands.map((c) => `<code class="type">${c}</code>`).join("")}
     <p class="aside">${lesson.aside}</p>
-    <div class="outcome" id="outcome" hidden></div>`;
+    <div class="outcome" id="outcome" hidden></div>
+    ${fieldNotes(lesson)}`;
   renderLessons();
   if (S.done.has(lesson.id)) showOutcome(lesson, lastRunFor(lesson));
   if (focus) $("term-in").focus({ preventScroll: true });
   // Show the lab at rest for this lesson until a command is typed.
   if (!S.playing) idleScene(lesson);
+}
+
+// Real incidents of the kind the lesson rehearses, each with a link to the
+// report written by the people it happened to.
+function fieldNotes(lesson) {
+  if (!lesson.incidents?.length) return "";
+  return `
+    <aside class="field">
+      <h3>It has happened for real</h3>
+      ${lesson.incidents.map((i) => `
+        <div class="incident">
+          <p class="who">${i.who} <span>${i.when}</span></p>
+          <p>${i.what}</p>
+          <p class="lesson-link">${i.why}</p>
+          <p><a href="${i.url}" target="_blank" rel="noopener">${i.link} ↗</a></p>
+        </div>`).join("")}
+      <p class="aside">The summaries are ours; the reports are theirs. Follow the links and read them in full.</p>
+    </aside>`;
 }
 
 function lastRunFor(lesson) {
@@ -196,7 +233,7 @@ function print(text, cls) {
 
 function classify(line) {
   if (/^WARN/.test(line)) return "warn";
-  if (/fault injected|stopped answering|gone$|no longer ready/.test(line)) return "fault";
+  if (/fault injected|stopped answering|gone$|no longer ready|dropped with|are gone$|NOT verified/.test(line)) return "fault";
   if (/^\s+(see it happen|[A-Z].*\.)$/.test(line) || /^(record|report) /.test(line)) return "note";
   return "";
 }
@@ -211,6 +248,9 @@ const HELP = [
   "  faildrill run gateway-pod --fault crash",
   "  faildrill run gateway-pod --fault evict",
   "  faildrill run rolling-restart",
+  "  faildrill run mongo-primary --fault crash",
+  "  faildrill run mongo-primary --fault stepdown",
+  "  faildrill run mongo-restore --mongo-db tyk_analytics",
   "  faildrill              the tool's own usage text",
   "  clear, help",
   "",
@@ -252,18 +292,25 @@ function execute(raw) {
   if (sub !== "run") return print(`unknown command "${sub}"`, "warn");
 
   const drill = words[2];
-  const drills = ["redis-primary", "gateway-pod", "rolling-restart"];
+  const drills = ["redis-primary", "gateway-pod", "rolling-restart", "mongo-primary", "mongo-restore"];
   if (!drills.includes(drill)) {
-    return print(`faildrill: unknown drill "${drill || ""}": use redis-primary, gateway-pod or rolling-restart`, "warn");
+    return print(`faildrill: unknown drill "${drill || ""}": use redis-primary, gateway-pod, rolling-restart, mongo-primary or mongo-restore`, "warn");
   }
   const flag = words.indexOf("--fault");
   let fault = flag >= 0 ? words[flag + 1] : (words.find((w) => w.startsWith("--fault=")) || "").slice(8);
   if (drill === "rolling-restart") fault = "rollout";
+  else if (drill === "mongo-restore") {
+    // The real tool refuses to drop a database it was not told the name of.
+    if (!words.some((w) => w.startsWith("--mongo-db"))) {
+      return print("faildrill: mongo-restore drops a database and restores it from a backup it has just taken: name the database with --mongo-db", "warn");
+    }
+    fault = "drop-and-restore";
+  }
   else if (!fault) fault = "crash";
   const key = `${drill}/${fault}`;
   const runs = S.byKey.get(key);
   if (!runs) {
-    const allowed = drill === "redis-primary" ? "crash or hang" : "crash or evict";
+    const allowed = { "redis-primary": "crash or hang", "mongo-primary": "crash or stepdown" }[drill] || "crash or evict";
     return print(`faildrill: unknown --fault "${fault}" for ${drill}: use ${allowed}`, "warn");
   }
   startReplay(runs[S.pick[key] || 0]);
@@ -507,6 +554,11 @@ const P = {
   upstream: [new THREE.Vector3(4.6, 0.5, 3.6), new THREE.Vector3(6.4, 0.5, 3.6)],
   redis: { "redis-0": new THREE.Vector3(2.6, 0.6, -2.8), "redis-1": new THREE.Vector3(5.4, 0.6, -2.8), "redis-2": new THREE.Vector3(8.2, 0.6, -2.8) },
   sentinel: [new THREE.Vector3(3.8, 2.9, -4.6), new THREE.Vector3(5.4, 3.2, -4.6), new THREE.Vector3(7.0, 2.9, -4.6)],
+  pump: new THREE.Vector3(10.4, 0.45, 0.4),
+  mongo: { "mongo-0": new THREE.Vector3(13.0, 0.75, -2.8), "mongo-1": new THREE.Vector3(13.0, 0.75, 0.4), "mongo-2": new THREE.Vector3(13.0, 0.75, 3.6) },
+  archive: new THREE.Vector3(10.4, 2.4, 3.8),
+  focusGateway: new THREE.Vector3(0.5, 0.9, 0.2),
+  focusMongo: new THREE.Vector3(6.6, 0.9, 0.2),
 };
 
 const scene = (() => {
@@ -534,7 +586,7 @@ const scene = (() => {
   const controls = new OrbitControls(camera, canvas);
   controls.target.set(0.5, 0.9, 0.2);
   controls.enablePan = false; controls.enableDamping = true;
-  controls.minDistance = 10; controls.maxDistance = 26;
+  controls.minDistance = 10; controls.maxDistance = 30;
   controls.minPolarAngle = 0.5; controls.maxPolarAngle = 1.42;
   controls.update();
 
@@ -553,6 +605,7 @@ const scene = (() => {
   const gwHub = new THREE.Vector3(P.gatewayX, 0, 0);
   lane(P.callers.open, gwHub); lane(P.callers.keyed, gwHub);
   lane(gwHub, new THREE.Vector3(5.5, 0, 3.6)); lane(gwHub, new THREE.Vector3(5.4, 0, -2.8));
+  lane(new THREE.Vector3(8.2, 0, -2.8), P.pump); lane(P.pump, new THREE.Vector3(13.0, 0, 0.4));
   const laneGeo = new THREE.BufferGeometry();
   laneGeo.setAttribute("position", new THREE.Float32BufferAttribute(lanes, 3));
   world.add(new THREE.LineSegments(laneGeo, new THREE.LineBasicMaterial({ color: 0x3a4c59 })));
@@ -597,6 +650,29 @@ const scene = (() => {
   upstreamAnchor.position.set(5.5, 0.5, 3.6);
   world.add(upstreamAnchor);
   setLabel(label(upstreamAnchor, 1.05), "upstream", "2 pods");
+
+  // The pump and MongoDB: where a record of every request ends up. An
+  // emptied database is drawn short, and the backup as a box set aside.
+  const pumpMesh = new THREE.Mesh(boxGeo, mat());
+  pumpMesh.position.copy(P.pump); pumpMesh.scale.set(0.8, 0.7, 0.8);
+  world.add(pumpMesh);
+  setLabel(label(pumpMesh, 1.0), "pump", "moves request records to MongoDB");
+  const mongoNodes = {};
+  for (const [name, pos] of Object.entries(P.mongo)) {
+    const mesh = new THREE.Mesh(new THREE.CylinderGeometry(0.78, 0.78, 1.5, 6), mat());
+    mesh.position.copy(pos);
+    world.add(mesh);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(1.02, 0.07, 12, 56), new THREE.MeshBasicMaterial({ color: COLOR.primary, transparent: true, opacity: 0 }));
+    ring.rotation.x = Math.PI / 2; ring.position.set(pos.x, pos.y + 0.95, pos.z);
+    world.add(ring);
+    mongoNodes[name] = { mesh, ring, label: label(mesh, 2.0) };
+  }
+  const archive = new THREE.Mesh(new RoundedBoxGeometry(1.0, 0.7, 1.0, 3, 0.1), new THREE.MeshStandardMaterial({ color: COLOR.primary, roughness: 0.5, transparent: true, opacity: 0 }));
+  archive.position.copy(P.archive);
+  world.add(archive);
+  const archiveLabel = label(archive, 0.85);
+  setLabel(archiveLabel, "backup", "taken before the disaster");
+  const pan = new THREE.Vector3();
 
   // Redis and its crown.
   const redis = {};
@@ -740,6 +816,29 @@ const scene = (() => {
       setLabel(r.label, name, sub, tone);
     }
 
+    // MongoDB.
+    const dropped = state.db.state === "dropped";
+    for (const [name, n] of Object.entries(mongoNodes)) {
+      const st = state.mongo[name];
+      const isPrimary = st.role === "primary" && !st.down;
+      const ease = Math.min(1, dt * 5);
+      n.mesh.material.color.lerp(st.down ? COLOR.frozen : dropped ? COLOR.stale : isPrimary ? COLOR.bodyHi : COLOR.body, ease);
+      n.mesh.scale.y += ((dropped ? 0.3 : 1) - n.mesh.scale.y) * ease;
+      n.ring.material.opacity += ((isPrimary ? 1 : 0) - n.ring.material.opacity) * ease;
+      n.ring.rotation.z += dt * 0.6;
+      const sub = st.down ? "not answering" : dropped ? "database dropped" : isPrimary ? "primary" : "secondary";
+      setLabel(n.label, name, sub, st.down || dropped ? "bad" : isPrimary ? "good" : "");
+    }
+    archive.material.opacity += ((state.db.backup ? 1 : 0) - archive.material.opacity) * Math.min(1, dt * 4);
+    archive.rotation.y += dt * 0.4;
+    archiveLabel.el.style.opacity = archive.material.opacity > 0.3 ? 1 : 0;
+
+    // The MongoDB drills happen at the far end of the lab: pan there, keeping
+    // whatever angle the visitor has chosen.
+    pan.copy(state.focus === "mongo" ? P.focusMongo : P.focusGateway).sub(controls.target).multiplyScalar(Math.min(1, dt * 2.5));
+    controls.target.add(pan);
+    camera.position.add(pan);
+
     // Sentinels watch the primary; they are uneasy while it does not answer.
     const pos = watchGeo.attributes.position;
     P.sentinel.forEach((s, i) => { pos.setXYZ(i * 2, s.x, s.y, s.z); pos.setXYZ(i * 2 + 1, primaryPos.x, primaryPos.y + 0.6, primaryPos.z); });
@@ -858,6 +957,9 @@ function renderResults() {
     "gateway-pod/crash": "One gateway pod killed without warning",
     "gateway-pod/evict": "One gateway pod deleted gracefully",
     "rolling-restart/rollout": "Every gateway pod restarted, as in an upgrade",
+    "mongo-primary/crash": "MongoDB primary killed",
+    "mongo-primary/stepdown": "MongoDB primary asked to step down",
+    "mongo-restore/drop-and-restore": "Analytics database dropped and restored",
   };
   const rows = [];
   for (const [key, label] of Object.entries(names)) {
@@ -900,7 +1002,8 @@ function openLink() {
   const lesson = LESSONS.findIndex((l) => l.key === keyOf(run));
   if (lesson >= 0) openLesson(lesson, { focus: false });
   const [drill, fault] = keyOf(run).split("/");
-  print(`faildrill run ${drill}${fault === "rollout" ? "" : ` --fault ${fault}`}`, "cmd");
+  const flags = { rollout: "", "drop-and-restore": " --mongo-db tyk_analytics" }[fault] ?? ` --fault ${fault}`;
+  print(`faildrill run ${drill}${flags}`, "cmd");
   startReplay(run);
   if (q.has("at")) seek(Number(q.get("at")));
   $("course").scrollIntoView();

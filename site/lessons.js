@@ -1,6 +1,8 @@
 // The course text. The lessons are written by hand; every number in an outcome
 // is read from the record being replayed, so the words cannot drift from the runs.
 
+import { INCIDENTS } from "./incidents.js";
+
 const sum = (run, name) => run.targets.find((t) => t.name === name)?.summary;
 const eventAt = (run, pattern) => run.events.find((e) => pattern.test(e.text))?.t;
 const s1 = (v) => Number(v).toFixed(1);
@@ -75,7 +77,34 @@ export const LESSONS = [
     commands: ["faildrill run rolling-restart"],
     aside: "A planned restart is the one failure you can run on a real install with little risk. It is a good first drill.",
   },
+  {
+    id: "mongo-primary",
+    key: "mongo-primary/crash",
+    short: "MongoDB loses its primary",
+    title: "The MongoDB primary is killed",
+    body: [
+      "The gateway does not write to MongoDB. It leaves a record of every request in Redis, and a separate process, Tyk Pump, moves those records into MongoDB every couple of seconds. That is where the analytics, the audit trail and the billing data of a Tyk install come from.",
+      "So when the MongoDB primary dies, callers should feel nothing. The question worth a drill is a different one: afterwards, is there still a record of every request? The tool counts the requests the gateway answered and the records MongoDB ends up with.",
+    ],
+    commands: ["faildrill run mongo-primary --fault crash"],
+    aside: "The picture pans to the far end of the lab for this one. Try <code>--fault stepdown</code> too: that is what every planned MongoDB upgrade does.",
+  },
+  {
+    id: "mongo-restore",
+    key: "mongo-restore/drop-and-restore",
+    short: "Restore from backup",
+    title: "The database is lost and restored from a backup",
+    body: [
+      "Replicas protect you from a machine dying. They do nothing when the data itself is destroyed: a dropped database is dropped on every member within a moment. For that there is only the backup, and a backup nobody has restored is a hope, not a plan.",
+      "This drill takes a backup, lets twenty more seconds of traffic arrive, drops the analytics database, and restores it. It reports the two numbers a backup policy promises: how long the restore took, and how much was written after the backup and is gone.",
+      "It is the one destructive drill, so the tool will not guess. You have to name the database it may drop.",
+    ],
+    commands: ["faildrill run mongo-restore --mongo-db tyk_analytics"],
+    aside: "Leave out <code>--mongo-db</code> and see what the tool says.",
+  },
 ];
+
+for (const lesson of LESSONS) lesson.incidents = INCIDENTS[lesson.id] || [];
 
 export function outcomeFor(lesson, run, bundle, byKey) {
   if (lesson.id === "preflight") {
@@ -178,6 +207,42 @@ export function outcomeFor(lesson, run, bundle, byKey) {
     paragraphs.push("A handful of failures in several thousand requests looks small, and at fifty requests a second it is. The count grows with traffic, and it repeats on every upgrade.");
   }
 
+  if (lesson.id === "mongo-primary") {
+    const f = run.facts;
+    figures.push({ value: `${f.election_s} s`, label: "until a new primary was elected" });
+    figures.push({ value: f.analytics_missing, label: "request records missing" });
+    paragraphs.push(keyed.failed + open.failed === 0
+      ? "No caller noticed, as expected: the request path does not touch MongoDB."
+      : `${plural(keyed.failed + open.failed, "request")} failed during this run, which MongoDB being away does not explain: look at the timeline before trusting this run.`);
+    paragraphs.push(`${f.primary_after || "Another member"} was elected ${f.election_s} seconds after ${f.primary_before} was killed. The gateway answered ${Number(f.requests_answered).toLocaleString("en")} requests in this run and MongoDB ended up with a record of ${Number(f.analytics_recorded).toLocaleString("en")}${Number(f.analytics_missing) === 0 ? ": none missing" : `: ${f.analytics_missing} missing`}.`);
+    if (Number(f.analytics_missing) === 0) {
+      paragraphs.push("Nothing was lost because the records wait in Redis until the pump has written them, and the pump went back to writing once there was a primary again. That protection has a limit this drill does not reach: Redis is holding the backlog, so a MongoDB outage long enough to fill it, or a Redis failure during it, would lose records.");
+    }
+    const all = [...(byKey.get("mongo-primary/crash") || []), ...(byKey.get("mongo-primary/stepdown") || [])];
+    const elections = all.map((r) => Number(r.facts.election_s)).filter((v) => !Number.isNaN(v));
+    const missing = all.map((r) => Number(r.facts.analytics_missing));
+    paragraphs.push(`Across the ${all.length} recorded runs of this drill, killed and stepped down, an election took between ${s1(Math.min(...elections))} and ${s1(Math.max(...elections))} seconds and ${span(missing)} records went missing per run.`);
+  }
+
+  if (lesson.id === "mongo-restore") {
+    const f = run.facts;
+    const n = (v) => Number(v).toLocaleString("en");
+    figures.length = 0;
+    figures.push({ value: n(f.records_lost), label: "records lost for good" });
+    figures.push({ value: `${f.lost_window_s} s`, label: "of writes after the backup" });
+    figures.push({ value: `${f.restore_s} s`, label: "from the drop to restored" });
+    figures.push({ value: keyed.failed + open.failed, label: "requests failed" });
+    paragraphs.push(`The database held ${n(f.records_at_disaster)} request records when it was dropped. The restore brought back ${n(f.records_restored)}, in ${f.restore_s} seconds. The other ${n(f.records_lost)} were written in the ${f.lost_window_s} seconds between the backup and the disaster, and no restore can return them.`);
+    paragraphs.push(f.verified === "yes"
+      ? "The tool then checked the restore instead of trusting it: every record older than the backup was counted before the drop and again afterwards, and the two counts match."
+      : "The tool then checked the restore instead of trusting it, and the check failed: the count of records older than the backup was different after the restore. A restore that reports success and returns less than was backed up is the case this check exists for.");
+    paragraphs.push(keyed.failed + open.failed === 0
+      ? "No caller noticed any of this. That is the uncomfortable part: the gateway kept answering while the record of what it answered was being destroyed, and nothing in the request path would have told you."
+      : `${plural(keyed.failed + open.failed, "request")} failed during this run.`);
+    const lost = runs.map((r) => Number(r.facts.records_lost));
+    paragraphs.push(`These numbers are small because the lab is small: ${n(f.records_at_disaster)} records is a few megabytes. The two that matter scale differently. The time grows with the size of your data, and the loss grows with the hours since your last backup. Across the ${runs.length} recorded runs, with a backup about twenty seconds old, between ${n(Math.min(...lost))} and ${n(Math.max(...lost))} records were lost.`);
+  }
+
   return { figures, paragraphs };
 }
 
@@ -213,6 +278,22 @@ export function takeaways(byKey) {
     cards.push({
       title: "Planned restarts leak refused connections",
       text: `Restarting or gracefully deleting a gateway pod refused ${plural(refusedConnections, "connection")} across the recorded runs. The chart sets no preStop hook, so a pod can stop listening before the Service has stopped sending to it.`,
+    });
+  }
+
+  const elections = [...(byKey.get("mongo-primary/crash") || []), ...(byKey.get("mongo-primary/stepdown") || [])];
+  if (elections.length && elections.every((r) => Number(r.facts.analytics_missing) === 0)) {
+    cards.push({
+      title: "Losing the MongoDB primary lost no records",
+      text: `In ${elections.length} runs a new primary was elected within ${Math.max(...elections.map((r) => Number(r.facts.election_s))).toFixed(1)} seconds, callers saw nothing, and every request the gateway answered was on record afterwards. The records wait in Redis until the pump can write them.`,
+    });
+  }
+  const restores = byKey.get("mongo-restore/drop-and-restore") || [];
+  if (restores.length) {
+    const lost = restores.map((r) => Number(r.facts.records_lost));
+    cards.push({
+      title: "A restore returns the backup, not the database",
+      text: `Dropping the analytics database and restoring a backup about twenty seconds old lost between ${Math.min(...lost).toLocaleString("en")} and ${Math.max(...lost).toLocaleString("en")} request records per run. ${restores.every((r) => r.facts.verified === "yes") ? "Every restore was verified against a count taken before the drop." : "Not every restore passed its verification."} No caller saw an error at any point.`,
     });
   }
 
