@@ -1,0 +1,23 @@
+gateway    gateway-tyk-tyk-gateway  (docker.tyk.io/tyk-gateway/tyk-gateway:v5.13.5)
+namespace  faildrill-lab
+
+ok    2 gateway replicas
+WARN  all 2 gateway pods run on one node (outage-arena01)
+      Losing that node takes every gateway with it. Replicas only help when they are apart.
+      see it happen: faildrill run gateway-pod
+WARN  no PodDisruptionBudget covers the gateway
+      A node drain or cluster upgrade may evict every gateway pod at the same time.
+      see it happen: faildrill run gateway-pod
+WARN  the gateway has no preStop hook
+      A stopping pod gets SIGTERM while the Service is still sending it requests; removing it from the endpoints takes a few seconds to reach every node.
+      see it happen: faildrill run rolling-restart
+note  readiness probe /hello every 10s, unready after 3 failures (30s)
+      A pod that stops being able to serve keeps receiving traffic for that long before Kubernetes takes it out.
+WARN  rolling update allows 1 unavailable of 2
+      During every upgrade the gateway runs below strength; with few replicas that is a large share of capacity.
+      see it happen: faildrill run rolling-restart
+ok    the gateway finds Redis through Sentinel (master name "mymaster", redis-sentinel:26379)
+ok    3 Redis pods
+ok    every Redis pod has a persistent volume
+
+4 warnings. Preflight reads the install; only a drill shows what callers would feel.

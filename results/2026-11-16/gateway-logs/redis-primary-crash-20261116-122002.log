@@ -1,0 +1,384 @@
+Defaulted container "gateway-tyk-gateway" out of: gateway-tyk-gateway, setup-directories (init)
+Defaulted container "gateway-tyk-gateway" out of: gateway-tyk-gateway, setup-directories (init)
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:19Z" level=error msg="Error while receiving pubsub message:EOF"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:19Z" level=error msg="Connection to Redis failed, reconnect in 10s" error=EOF prefix=pub-sub
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:19 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:20 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:20 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:20 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="Redis health check failed" error="storage: Redis is either down or was not configured" liveness-check=true prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="cannot set key in pollerCacheKey" error="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Starting Poller" prefix=host-check-mgr
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:23 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:23 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:23 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:23 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="Error trying to publish message: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="Could not send notification: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host" prefix=pub-sub
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:23 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:23 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:23Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Attempted access with non-existent key." api_id=keyed api_name=keyed key="****-key" mw=AuthKey org_id=lab origin=10.42.0.1 path=/keyed/get type=request
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:24 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:24 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Reload queued" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="reload: initiating" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading policies" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading policy from dir /mnt/tyk-gateway/policies/policies.json"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="Couldn't unmarshal policy configuration from dir: /mnt/tyk-gateway/policies/policies.json : EOF"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Policies found (1 total):" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading API Specification from /mnt/tyk-gateway/apps/keyed.json"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading API Specification from /mnt/tyk-gateway/apps/open.json"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Detected 2 APIs" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading API configurations." prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Tracking hostname" api_name=keyed domain="(no host)" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Tracking hostname" api_name=open domain="(no host)" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Initialising Tyk REST API Endpoints" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="API bind on custom port:0" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="API bind on custom port:0" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading uptime tests..." prefix=host-check-mgr
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Initialised API Definitions" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="API reload complete" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="reload: complete" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Initiating coprocess reload" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Reloading middlewares" prefix=coprocess
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="coprocess reload complete" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="reload: cycle completed in 1.57106ms" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:25 sentinel.go:1096: sentinel: new master="mymaster" addr="redis-0.redis:6379"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:25 sentinel.go:1096: sentinel: new master="mymaster" addr="redis-0.redis:6379"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:25 pool.go:1021: redis: connection pool: failed to get a usable connection after 3 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:25 pool.go:1021: redis: connection pool: failed to get a usable connection after 3 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:25 sentinel.go:1096: sentinel: new master="mymaster" addr="redis-0.redis:6379"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-52vjt/gateway-tyk-gateway] redis: 2026/11/16 12:20:26 pool.go:1021: redis: connection pool: failed to get a usable connection after 3 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:19Z" level=error msg="Error while receiving pubsub message:EOF"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:19Z" level=error msg="Connection to Redis failed, reconnect in 10s" error=EOF prefix=pub-sub
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:19 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:20 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:20 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:20 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:20 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:20 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:21 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:22 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="Error trying to publish message: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="Could not send notification: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host" prefix=pub-sub
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="Redis health check failed" error="storage: Redis is either down or was not configured" liveness-check=true prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:22Z" level=error msg="cannot set key in pollerCacheKey" error="storage: Redis is either down or was not configured"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:23 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:23 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:23 pool.go:617: redis: connection pool: failed to dial after 5 attempts: dial tcp: lookup redis-1.redis on 10.43.0.10:53: no such host
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:23 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:24 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:24 pool.go:1021: redis: connection pool: failed to get a usable connection after 2 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Reload queued" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="reload: initiating" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading policies" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading policy from dir /mnt/tyk-gateway/policies/policies.json"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=error msg="Couldn't unmarshal policy configuration from dir: /mnt/tyk-gateway/policies/policies.json : EOF"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Policies found (1 total):" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading API Specification from /mnt/tyk-gateway/apps/keyed.json"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading API Specification from /mnt/tyk-gateway/apps/open.json"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Detected 2 APIs" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading API configurations." prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Tracking hostname" api_name=keyed domain="(no host)" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Tracking hostname" api_name=open domain="(no host)" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Initialising Tyk REST API Endpoints" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="API bind on custom port:0" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="API bind on custom port:0" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Loading uptime tests..." prefix=host-check-mgr
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Initialised API Definitions" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="API reload complete" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="reload: complete" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Initiating coprocess reload" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="Reloading middlewares" prefix=coprocess
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="coprocess reload complete" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] time="2026-11-16T12:20:24Z" level=info msg="reload: cycle completed in 1.821139ms" prefix=main
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:25 sentinel.go:1096: sentinel: new master="mymaster" addr="redis-0.redis:6379"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:25 pool.go:1021: redis: connection pool: failed to get a usable connection after 3 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:25 sentinel.go:1096: sentinel: new master="mymaster" addr="redis-0.redis:6379"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:25 sentinel.go:1096: sentinel: new master="mymaster" addr="redis-0.redis:6379"
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:26 pool.go:1021: redis: connection pool: failed to get a usable connection after 3 attempts
+[pod/gateway-tyk-tyk-gateway-79dfbdbf5-6vpzv/gateway-tyk-gateway] redis: 2026/11/16 12:20:26 pool.go:1021: redis: connection pool: failed to get a usable connection after 3 attempts
