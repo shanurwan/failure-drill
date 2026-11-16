@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: go.mod
+      - name: Format
+        run: test -z "$(gofmt -l .)" || { gofmt -l .; exit 1; }
+      - name: Vet
+        run: go vet ./...
+      - name: Test
+        run: go test -race ./...
+      - name: Build
+        run: go build -o /tmp/faildrill ./cmd/faildrill && /tmp/faildrill version
+      - name: The replay bundle matches the records
+        # The page replays site/data/runs.json. It must be exactly what
+        # `faildrill export` makes from the committed records.
+        run: |
+          /tmp/faildrill export -o /tmp/runs.json \
+            -preflight results/2026-11-16/preflight.txt \
+            -pods results/2026-11-16/pods.txt \
+            results/2026-11-16/*.json
+          cmp /tmp/runs.json site/data/runs.json
+      - name: Lab scripts
+        run: shellcheck lab/*.sh
