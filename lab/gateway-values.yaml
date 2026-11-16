@@ -1,0 +1,30 @@
+# Values for Tyk's own open-source chart (tyk-helm/tyk-oss): two gateways that
+# find Redis through Sentinel and load the lab's API definitions from a ConfigMap.
+global:
+  secrets:
+    APISecret: lab-admin-secret
+  redis:
+    addrs:
+      - redis-sentinel:26379
+    enableSentinel: true
+    masterName: mymaster
+    sentinelPass: ""
+
+tyk-gateway:
+  gateway:
+    replicaCount: 2
+    service:
+      type: NodePort
+      externalTrafficPolicy: Cluster
+    control:
+      enabled: false
+    extraVolumes:
+      - name: lab-apis
+        configMap:
+          name: lab-apis
+    extraVolumeMounts:
+      - name: lab-apis
+        mountPath: /mnt/tyk-gateway/apps
+    resources:
+      requests: {cpu: 100m, memory: 128Mi}
+      limits: {memory: 512Mi}
